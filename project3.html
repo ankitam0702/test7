@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="lightpurp.png"/>
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            font-family: Garamond;
+            cursor: url('samosa3.png'), auto; /* Default cursor */
+        }
+
+        .topnav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #DFCCFB;
+            padding: 0 20px;
+            height: 60px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .topnav h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .topnav .nav-links {
+            display: flex;
+        }
+
+        .topnav .nav-links a {
+            display: block;
+            color: #000000;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 20px;
+        }
+
+        .topnav .nav-links a:hover {
+            color: black;
+        }
+
+        .topnav .icon {
+            display: none;
+        }
+
+        .nav-link {
+            font-weight: bold;
+            font-size: 14px;
+            color: #031D44;
+            padding: 20px 0px;
+            margin: 0px 20px;
+            display: inline-block;
+            position: relative;
+            opacity: 0.75;
+        }
+
+        .nav-link:hover {
+            opacity: 0.8;
+        }
+
+        .nav-link::before {
+            transition: 300ms;
+            height: 5px;
+            content: "";
+            position: absolute;
+            background-color: #6b4f91;
+        }
+
+        .nav-link-ltr::before {
+            width: 0%;
+            bottom: 7px;
+        }
+
+        .nav-link-ltr:hover::before {
+            width: 68%;
+        }
+
+        /* Dropdown Menu for Mobile */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 60px;
+            right: 0;
+            background-color: #DFCCFB;
+            width: 100%;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 14px 16px;
+            color: #000;
+            text-decoration: none;
+            border-top: 1px solid #AC94CF;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #AC94CF;
+        }
+
+        @media screen and (max-width: 600px) {
+            .topnav .nav-links {display: none;}
+            .topnav .icon {
+                display: block;
+                font-size: 24px;
+                padding: 14px 16px;
+                cursor: pointer;
+            }
+
+            .dropdown-menu.show {
+                display: block;
+            }
+        }
+
+        /* Width */
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #6b4f91;
+  border-radius: 20px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #896eaf;
+}
+
+/* For Firefox */
+/* Thin scrollbar width */
+body {
+  scrollbar-width: thin;
+  scrollbar-color: #6b4f91 #f1f1f1; /* Thumb color and track color */
+}
+
+
+
+        .wrapper{
+            height: 100vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            perspective: 10px;
+        }
+
+        header{
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            transform-style: preserve-3d;
+            z-index: -1;
+            margin-bottom: 200px;
+            margin-top: 70px;
+        }
+
+        .background{
+            transform: translateZ(-10px) scale(2.1);
+        }
+
+        .foreground{
+            transform: translateZ(-5px) scale(2);
+        }
+
+        .background,
+        .foreground{
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .title{
+            font-size: 7rem;
+            color: #e9e5e8;
+            text-shadow: 0 0 5px black;
+        }
+
+        section{
+            background-image: url("pattern.png");
+            background-size: contain;
+            font-size: 2rem;
+            padding: 2rem;
+            background-color: #AC94CF;
+            color: rgb(0, 0, 0);
+            height: 175vh;
+        }
+
+        .rand{
+            height: 80vh;
+        }
+
+        .rand-two{
+            height: 80vh;
+            margin-top: -500px;
+            margin-left: 630px;
+
+        }
+        .rand-three{
+            height: 80vh;
+            margin-top: -200px;
+            margin-left: 250px;
+            width: 67%;
+        }
+        .rand-four{
+           margin-top: -70px;
+        }
+        .logo-main{
+        width: 100px;
+        margin-left: -100px;
+}
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="topnav">
+            <a class="logo-main" href="index.html"><img height="200px" width="auto" src="/logo.png"></a>
+            <!-- <h1>Ankita Murali</h1> -->
+            <div class="nav-links">
+                <a class="nav-link nav-link-ltr" href="index.html">Home</a>
+                <a class="nav-link nav-link-ltr" href="aboutpage.html">About</a>
+                <a class="nav-link nav-link-ltr" href="workpage.html">Work</a>
+                <a class="nav-link nav-link-ltr" href="contactpage.html">Contact</a>
+            </div>
+            <div class="icon" onclick="toggleMenu()">
+                <i class="fa fa-bars"></i>
+            </div>
+        </div>
+        
+        <div class="dropdown-menu" id="menuDropdown">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#work">Work</a>
+            <a href="#contact">Contact</a>
+        </div>
+        
+        <header>
+            <img src="musiczine.png" class="background">
+            <img src="girlzine-02.png" class="foreground">
+            <h1 class="title">
+                Japanese inspired zine
+            </h1>
+        </header>
+        <section>
+            <div><b>
+                We had to create a Japanese inspired zine with only two colours or lesser and 4 pages.
+                There were a lot of art styles to choose from but I choose the kawaii art style as I found that the most interesting, quirky and fun to work on! Our theme was, ‘A day at design school’.
+            </b></div>
+            <div>
+                <img src="zinee1.png" class="rand">
+            </div>
+            <div>
+                <img src="zinee2.png" class="rand-two">
+            </div>
+            <div>
+                <img src="zinee3.png" class="rand-three">
+            </div>
+            <div class="rand-four"><b>
+                My routine in college is very simple, I travel everyday morning in an auto while listening to music and listen to music constantly throughout the day. I eat a samosa everyday during the break and come home and finish my assignments. It is always difficult to choose only two colours and work with them but I chose pink and blue as I have always loved the combination of these two colours and they go really well together. I loved trying out this new art style!
+             </b></div>
+        </section>
+
+       
+
+        </div>
+    </div>
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById("menuDropdown");
+            if (menu.classList.contains("show")) {
+                menu.classList.remove("show");
+            } else {
+                menu.classList.add("show");
+            }
+        }
+
+        </script>
+        
+</body>
+</html>

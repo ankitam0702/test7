@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="lightpurp.png"/>
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            font-family: Garamond;
+            cursor: url('samosa3.png'), auto; /* Default cursor */
+
+        }
+  
+ 
+
+        .topnav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #DFCCFB;
+            padding: 0 20px;
+            height: 60px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .topnav h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .topnav .nav-links {
+            display: flex;
+        }
+
+        .topnav .nav-links a {
+            display: block;
+            color:#000000;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 20px;
+        }
+
+        .topnav .nav-links a:hover {
+            color: #000000;
+        }
+
+        .topnav .icon {
+            display: none;
+        }
+        .custom-image-cursor {
+  cursor: url('/Samosa.png') 16 16, auto; /* Specify the image URL */
+}
+        .nav-link {
+            font-weight: bold;
+            font-size: 14px;
+            color: #031D44;
+            padding: 20px 0px;
+            margin: 0px 20px;
+            display: inline-block;
+            position: relative;
+            opacity: 0.75;
+        }
+
+        .nav-link:hover {
+            opacity: 0.8;
+        }
+
+        .nav-link::before {
+            transition: 300ms;
+            height: 5px;
+            content: "";
+            position: absolute;
+            background-color: #6b4f91;
+        }
+
+        .nav-link-ltr::before {
+            width: 0%;
+            bottom: 7px;
+        }
+
+        .nav-link-ltr:hover::before {
+            width: 68%;
+        }
+
+        /* Dropdown Menu for Mobile */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 60px;
+            right: 0;
+            background-color: #DFCCFB;
+            width: 100%;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 14px 16px;
+            color: #000;
+            text-decoration: none;
+            border-top: 1px solid #AC94CF;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #AC94CF;
+        }
+
+        @media screen and (max-width: 600px) {
+            .topnav .nav-links {display: none;}
+            .topnav .icon {
+                display: block;
+                font-size: 24px;
+                padding: 14px 16px;
+                cursor: pointer;
+            }
+
+            .dropdown-menu.show {
+                display: block;
+            }
+        }
+
+        /* Width */
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #6b4f91;
+  border-radius: 20px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #896eaf;
+}
+
+/* For Firefox */
+/* Thin scrollbar width */
+body {
+  scrollbar-width: thin;
+  scrollbar-color: #6b4f91 #f1f1f1; /* Thumb color and track color */
+}
+
+
+
+        .wrapper{
+            height: 100vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            perspective: 10px;
+        }
+
+        header{
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            transform-style: preserve-3d;
+            z-index: -1;
+            margin-bottom: 200px;
+            margin-top: 70px;
+        }
+
+        .background{
+            transform: translateZ(-10px) scale(2);
+        }
+
+        .foreground{
+            transform: translateZ(-5px) scale(1);
+        }
+
+        .background,
+        .foreground{
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        .foreground{
+            object-fit: contain;
+        }
+
+        .title{
+            font-size: 7rem;
+            color: #e6e5e5;
+            text-shadow: 0 0 5px black;
+        }
+
+        section{
+            background-image: url("pattern.png");
+            background-size: contain;
+            font-size: 2rem;
+            padding: 2rem;
+            background-color: #AC94CF;
+            color: rgb(0, 0, 0);
+            height: 200vh;
+        }
+        .rand {
+    height: 170vh;
+    width: 80%;
+    border-radius: 20px;
+    margin-top: 50px;
+    margin-left: 170px;
+   
+    
+}
+
+
+
+.center {
+  width: 180px;
+  height: 60px;
+  position: absolute;
+  margin-left: 40%;
+  margin-top: 60%;
+}
+
+.btn {
+font-family: Garamond;
+  width: 180px;
+  height: 60px;
+  cursor: pointer;
+  background: transparent;
+  border: 3px solid #6b4f91;
+  outline: none;
+  transition: 1s ease-in-out;
+  margin-bottom: -100px;
+}
+
+svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  fill: none;
+  stroke: #fff;
+  stroke-dasharray: 150 480;
+  stroke-dashoffset: 150;
+  transition: 1s ease-in-out;
+  text-decoration: none;
+}
+
+.btn:hover {
+  transition: 1s ease-in-out;
+  background: #6b4f91;
+}
+
+.btn:hover svg {
+  stroke-dashoffset: -480;
+}
+
+    .btn span {
+    color: black;
+    font-size: 25px;
+    font-weight: 100;
+    }
+
+    .logo-main{
+        width: 100px;
+        margin-left: -100px;
+    }
+
+a{
+    text-decoration: none;
+    color: black;
+}
+</style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="topnav">
+            <a class="logo-main" href="index.html"><img height="200px" width="auto" src="/logo.png"></a>
+            <!-- <h1>Ankita Murali</h1> -->
+            <div class="nav-links">
+                <a class="nav-link nav-link-ltr" href="index.html">Home</a>
+                <a class="nav-link nav-link-ltr" href="aboutpage.html">About</a>
+                <a class="nav-link nav-link-ltr" href="workpage.html">Work</a>
+                <a class="nav-link nav-link-ltr" href="contactpage.html">Contact</a>
+            </div>
+            <div class="icon" onclick="toggleMenu()">
+                <i class="fa fa-bars"></i>
+            </div>
+        </div>
+        
+        <div class="dropdown-menu" id="menuDropdown">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#work">Work</a>
+            <a href="#contact">Contact</a>
+        </div>
+        
+        <header>
+            <img src="catbg.png" class="background">
+            <img src="ginger2.png" class="foreground">
+            <a href="project4.2.html"><h1 class="title">
+                Fuzzy Friends
+            </h1></a>
+        </header>
+        <section>
+            <div><b>
+                We've created a group of cats for your game, each with its own place in a hierarchy and a mix of unique and common names. The hierarchy could represent their ranks or roles in the game, with the most powerful or influential at the top. The blend of familiar and distinct names adds personality to the cats, making them relatable and memorable for players.
+            </b></div>
+            
+                <div class="center">
+                    <a href="project4.2.html">
+                  <button class="btn">
+                    <svg width="180px" height="60px" viewBox="0 0 180 60" class="border">
+                      <polyline points="179,1 179,59 1,59 1,1 179,1" class="bg-line" />
+                      <polyline points="179,1 179,59 1,59 1,1 179,1" class="hl-line" />
+                    </svg>
+                    <span><b>Fuzzy Friends</b></span>
+                  </button>
+                </a>
+                </div>
+              
+            <div>
+                <img src ="game12.png" class="rand">
+            </div>
+            </div>
+        </section>
+
+       
+
+        </div>
+    </div>
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById("menuDropdown");
+            if (menu.classList.contains("show")) {
+                menu.classList.remove("show");
+            } else {
+                menu.classList.add("show");
+            }
+        }
+
+        </script>
+        
+</body>
+</html>

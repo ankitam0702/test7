@@ -1,0 +1,486 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {
+  margin: 0;
+  font-family: Garamond;
+  cursor: url('samosa3.png'), auto; /* Default cursor */
+}
+
+.topnav {
+  display: flex;
+  justify-content: space-between; /* Spread out the title and navigation links */
+  align-items: center;
+  background-color: #DFCCFB;
+  padding: 0 20px;
+  height: 60px;  /* Fix the height of the navigation bar */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.topnav h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.topnav .nav-links {
+  display: flex; /* Flex container for the navigation links */
+}
+
+.topnav .nav-links a {
+  display: block;
+  color: #000000;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.topnav .nav-links a:hover {
+  color: black;
+}
+
+.topnav .icon {
+  display: none; /* Initially hidden, only for mobile view */
+}
+
+.nav-link {
+    font-weight: bold;
+    font-size: 14px;
+    color: #031D44;
+    padding: 20px 0px;
+    margin: 0px 20px;
+    display: inline-block;
+    position: relative;
+    opacity: 0.75;
+}
+
+.nav-link:hover {
+    opacity: 0.8;
+}
+
+.nav-link::before {
+    transition: 300ms;
+    height: 5px;
+    content: "";
+    position: absolute;
+    background-color: #6b4f91;
+}
+
+.nav-link-ltr::before {
+    width: 0%;
+    bottom: 7px;
+}
+
+.nav-link-ltr:hover::before {
+    width: 68%;
+}
+
+/* Dropdown Menu for Mobile */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 60px;
+  right: 0;
+  background-color: #DFCCFB;
+  width: 100%;
+  z-index: 1;
+  text-align: center;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 14px 16px;
+  color: #000;
+  text-decoration: none;
+  border-top: 1px solid #AC94CF;
+}
+
+.dropdown-menu a:hover {
+  background-color: #AC94CF;
+}
+
+/* Media Query for Mobile View */
+@media screen and (max-width: 600px) {
+  .topnav .nav-links {display: none;} /* Hide nav links on small screens */
+  .topnav .icon {
+    display: block; /* Show hamburger icon for mobile */
+    font-size: 24px;
+    padding: 14px 16px;
+    cursor: pointer;
+  }
+
+  .dropdown-menu.show {
+    display: block; /* Show dropdown menu when triggered */
+  }
+}
+#rcorners1 {
+  border-radius: 25px;
+  background: #AC94CF;
+  padding: 20px; 
+  width: 540px;
+  height: 390px;  
+  margin-left:150px;
+  
+}
+
+#rcorners1:hover { 
+    background-color: #7a5ba7; 
+    color: rgb(0, 0, 0); 
+    transform: scale(1.05); 
+}
+p {
+  font-size: 95px;
+  text-align: center;
+}
+.header {
+  background-image: url("pattern.png");
+  background-size: cover;
+  background-color:#AC94CF;
+  padding: 25px;
+  text-align: center;
+}
+.header-two {
+  background-image: url("pattern.png");
+  background-size: cover;
+  background-color:#AC94CF;
+  padding: 25px;
+  text-align: center;
+  margin-top: 50px;
+}
+.header-three{
+  background-image: url("pattern.png");
+  background-size: cover;
+  background-color:#AC94CF;
+  padding: 1px;
+  text-align: center;
+  margin-top: 50px;
+  font-size: 20px;
+}
+
+/* Floating Animation */
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(20px); /* Move up by 10px */
+    }
+    100% {
+        transform: translateY(0); /* Return to original position */
+    }
+}
+
+.floating-image {
+    animation: float 2s ease-in-out infinite; /* Infinite floating effect */
+    margin-right:75px;
+}
+#rcorners2 {
+  border-radius: 25px;
+  border: 2px solid #7a5ba7;
+  padding: 20px; 
+  width: 700px;
+  height: 400px;  
+  margin-left: 390px;
+  margin-top: 50px;
+  display:flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+/* Container for each work item */
+.work-item {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    border-radius: 30px;
+    overflow: hidden;
+    display: inline-block;
+    margin-left: 25px;
+}
+
+/* Image styling */
+.work-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
+    
+    
+}
+
+/* Overlay styling */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(172, 148, 207, 0.8); /* Semi-transparent purple */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.3s ease;
+}
+
+/* Hover effect */
+.work-item:hover .overlay {
+    opacity: 1; /* Show overlay on hover */
+}
+
+/* Button styling */
+.view-button {
+  font-family: Garamond;
+    background-color: #7a5ba7;
+    color: white;
+    padding: 20px 50px;
+    border: none;
+    border-radius: 30px;
+    font-size: 23px;
+    cursor: pointer;
+}
+
+.view-button:hover {
+    background-color: #6b4f91; /* Darken button on hover */
+}
+.small-heading{
+  text-align: center;
+  margin-top: 50px;
+  color: black; /* Initial text color */
+    text-decoration: underline;
+    font-size: 20px;
+    cursor: pointer; /* Adds a pointer when hovering */
+    transition: color 0.3s ease; /* Smooth transition effect */
+}
+.small-heading:hover {
+  color: #0056b3; /* Change color on hover */
+  text-decoration: underline; /* Add underline on hover */
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5); /* Shadow on hover */
+}
+
+.content-one{
+  margin-left: 200px;
+  margin-right: 200px;
+  margin-top: -50px;
+}
+.small-headingtwo{
+  text-align: center;
+  margin-top: -50px;
+  color: black; /* Initial text color */
+    font-size: 20px;
+    cursor: pointer; /* Adds a pointer when hovering */
+    transition: color 0.3s ease; /* Smooth transition effect */
+}
+.small-headingtwo:hover {
+    color: rgb(10, 99, 223); /* Change text color on hover */
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5); /* Shadow on hover */
+}
+#rcorners3 {
+  border-radius: 25px;
+  background: #DFCCFB;
+  padding: 35px; 
+  width: 500px;
+  height: 120px;  
+  margin-left:470px;
+  margin-bottom: 35px;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 25px;
+}
+
+.social{
+  opacity: 1;
+  margin-left: 3px;
+}
+.social:hover{
+  opacity: 0.3;
+}
+/* Width */
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #6b4f91;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #896eaf;
+}
+
+/* For Firefox */
+/* Thin scrollbar width */
+body {
+  scrollbar-width: thin;
+  scrollbar-color: #6b4f91 #f1f1f1; /* Thumb color and track color */
+}
+#backToTop {
+    position: fixed; /* Fixed position to stay in the same place */
+    bottom: 20px; /* Distance from the bottom of the viewport */
+    right: 20px; /* Distance from the right of the viewport */
+    background-color: #7a5ba7; /* Background color */
+    color: white; /* Text color */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px 15px; /* Padding for size */
+    font-size: 16px; /* Font size */
+    cursor: pointer; /* Cursor changes to pointer on hover */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    transition: background-color 0.3s, transform 0.3s; /* Smooth transition effects */
+    font-family: Garamond;
+}
+
+/* Hover effect */
+#backToTop:hover {
+    background-color: #6b4f91; /* Darker shade on hover */
+    transform: scale(1.05); /* Slightly scale up on hover */
+}
+
+/* Media query for responsiveness */
+@media screen and (max-width: 600px) {
+    #backToTop {
+        font-size: 14px; /* Adjust font size for smaller screens */
+        padding: 8px 12px; /* Adjust padding for smaller screens */
+    }
+}
+.logo-main{
+        width: 100px;
+        margin-left: -100px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <a class="logo-main" href="#home"><img height="200px" width="auto" src="/logo.png"></a>
+  <!-- <h1>Ankita Murali</h1> -->
+  
+  <!-- Navigation Links (visible on larger screens) -->
+  <div class="nav-links">
+    <a class="nav-link nav-link-ltr" href="#home">Home</a>
+    <a class="nav-link nav-link-ltr" href="aboutpage.html">About</a>
+    <a class="nav-link nav-link-ltr" href="workpage.html">Work</a>
+    <a class="nav-link nav-link-ltr" href="contactpage.html">Contact</a>
+  </div>
+  
+  <!-- Hamburger Icon (visible on mobile) -->
+  <div class="icon" onclick="toggleMenu()">
+    <i class="fa fa-bars"></i> <!-- Hamburger menu icon -->
+  </div>
+</div>
+
+<!-- Dropdown menu for mobile view -->
+<div class="dropdown-menu" id="menuDropdown">
+  <a href="#home">Home</a>
+  <a href="#about">About</a>
+  <a href="#work">Work</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<script>
+function toggleMenu() {
+  var menu = document.getElementById("menuDropdown");
+  if (menu.classList.contains("show")) {
+    menu.classList.remove("show");
+  } else {
+    menu.classList.add("show");
+  }
+}
+
+</script>
+<script>
+  // Get the button element
+  const backToTopButton = document.getElementById("backToTop");
+
+  // Show the button only when the user reaches the bottom of the page
+  window.onscroll = function() {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+
+    // Check if the user has reached the bottom of the page
+    if (scrollTop + windowHeight >= documentHeight) {
+      backToTopButton.style.display = "block"; // Show button
+    } else {
+      backToTopButton.style.display = "none"; // Hide button
+    }
+  };
+
+  // Function to scroll to the top smoothly
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Initially hide the button (just in case)
+  backToTopButton.style.display = "none";
+</script>
+<img src="Designer girl-rafiki.png"class="floating-image"width="580" height="620" alt="Design working girl" align="right">
+  
+<p id="rcorners1"><b>Hello!</b><font size="6"><br><br>
+  I am Ankita and I am an aspiring UI/UX  designer.
+  Here is my portfolio website! You can scroll down for small snippets of each section or head on to the navigation bar and individually go and check out all the sections!</p>
+</font>
+<div class="header">
+  <h1 ><b>Featured work</b></h1>
+</div>
+<div id="rcorners2">
+  <div class="work-item">
+      <img class="work-img" src="Fuzzy Friends.png" width="200" height="300" alt="Skincare in India">
+      <div class="overlay">
+        <a href="project4.html"><button class="view-button">Game design</button></a>
+      </div>
+  </div>
+
+  <div class="work-item">
+      <img class="work-img" src="zine2.jpg" width="200" height="300" alt="Digitising the Interface">
+      <div class="overlay">
+        <a href="project3.html"><button class="view-button">Graphic design</button>
+      </div>
+  </div>
+</div>
+
+<a href="workpage.html"><h3 class="small-heading">Go to the work section for more!</h3></a>
+
+<div class="header-two">
+  <h1 ><b>About Me</b></h1>
+</div>
+<div class="content-one">
+<p><font size="6">Hi there! I’m Ankita and I am currently student pursuing a bachelors in design. This page might look really girlie pop, artsy and very minimal but that is just me. I love the colour purple and all shades, tones and tints of it. I am quiet around strangers and a maniac with my friends. I am short in height so anything I portray will always be loud and bold but at the same time shy and sweet. Hence the use of these colours!</font></p>
+</div>
+<a href="aboutpage.html"><h3 class="small-headingtwo">Go to the about section to learn more about me and my passion for design!</h3></a>
+
+<div class="header-three">
+  <h1><b>Contact Me!</b></h1>
+
+  <div class="last">
+  <p id="rcorners3"><font size="4">I would love to work together on a project or you can even contact me if you have any queries about my work/education etc.<br><br>
+    <b>Email: ankitamurali07@gmail.com</b><br><br>
+    <b>Follow for more:</b>
+    <a><a href="https://www.linkedin.com/in/ankita-murali-8ab54226a/">
+      <img class="social" src="Linkedln.png"width="15px" height="15px"></a>
+      <a><a href="https://www.behance.net/7am02msa">
+    <img class="social" src="Behance (1).png"width="22px" height="15px"></a>
+    <a><a href="https://www.instagram.com/ankita_murali0702/">
+    <img class="social" src="Instagram.png"width="15px" height="15px"></a>
+    <a><a href="https://in.pinterest.com/ankitam0702/">
+    <img class="social" src="Pinterest.png"width="15px" height="15px"></a><br><br>
+    <b>You can even go fill out the form in the contact page!</b></p>
+  </div>
+</font>
+</div>
+<button id="backToTop" onclick="scrollToTop()">Back to Top</button>
+</body>
+</html>

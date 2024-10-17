@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="lightpurp.png"/>
+        <style>
+        body {
+            margin: 0;
+            font-family: Garamond;
+            cursor: url('samosa3.png'), auto; /* Default cursor */
+        }
+
+        .wrapper {
+            overflow-x: hidden;
+        }
+
+        .section-content {
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .image-container {
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .image-container.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .image-container img {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .image-container:hover img {
+    transform: translateX(-20px); /* Moves the image 20px to the left */
+    transition: transform 0.3s ease; /* Adds a smooth transition */
+}
+
+
+        /* Description that appears on hover */
+        .description {
+            position: absolute;
+            right: -70px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            width: 200px;
+            font-size: 30px;
+            
+        }
+
+        .image-container:hover .description {
+            opacity: 1;
+        }
+       
+
+
+        /* Full view modal styling */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+        }
+
+        .modal .close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+        }
+        .topnav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #DFCCFB;
+        padding: 0 20px;
+        height: 60px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .topnav h1 {
+        margin: 0;
+        font-size: 24px;
+      }
+
+      .logo-main{
+        width: 100px;
+        margin-left: -100px;
+      }
+
+      .topnav .nav-links {
+        display: flex;
+      }
+
+      .topnav .nav-links a {
+        display: block;
+        color: #000000;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 20px;
+      }
+
+      .topnav .nav-links a:hover {
+        color: black;
+      }
+
+      .topnav .icon {
+        display: none;
+      }
+
+      .nav-link {
+            font-weight: bold;
+            font-size: 14px;
+            color: #031D44;
+            padding: 20px 0px;
+            margin: 0px 20px;
+            display: inline-block;
+            position: relative;
+            opacity: 0.75;
+        }
+
+        .nav-link:hover {
+            opacity: 0.8;
+        }
+
+        .nav-link::before {
+            transition: 300ms;
+            height: 5px;
+            content: "";
+            position: absolute;
+            background-color: #6b4f91;
+        }
+
+        .nav-link-ltr::before {
+            width: 0%;
+            bottom: 7px;
+        }
+
+        .nav-link-ltr:hover::before {
+            width: 68%;
+        }
+
+      .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background-color: #DFCCFB;
+        width: 100%;
+        z-index: 1;
+        text-align: center;
+      }
+
+      .dropdown-menu a {
+        display: block;
+        padding: 14px 16px;
+        color: #000;
+        text-decoration: none;
+        border-top: 1px solid #AC94CF;
+      }
+
+      .dropdown-menu a:hover {
+        background-color: #AC94CF;
+      }
+
+      @media screen and (max-width: 600px) {
+        .topnav .nav-links {display: none;}
+        .topnav .icon {
+          display: block;
+          font-size: 24px;
+          padding: 14px 16px;
+          cursor: pointer;
+        }
+
+        .dropdown-menu.show {
+          display: block;
+        }
+      }
+
+      .header{
+          font-size: 30px;
+          text-align: center;
+      }
+
+      .small-para{
+          text-align: center;
+          font-size: 30px;
+          padding-left: 200px;
+          padding-right: 200px;
+          margin-top: -17px;
+      }
+
+      .accordion {
+          font-family: Garamond;
+            background-color: #AC94CF;
+            cursor: pointer;
+            padding: 0px;
+            width: 300px;
+            border: none;
+            text-align: center;
+            outline: none;
+            font-size: 40px;
+            transition: 0.4s;
+            margin-left: 600px;
+            border-radius: 20px;
+            height: 100px;
+            margin-top: 15px;
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+          
+          
+          }
+
+          .accordion.active, .accordion:hover {
+            background-color: #7a5ba7;
+            font-size: 42px;
+          }
+
+          
+
+      .panel {
+        padding: 0 18px;
+        background-color: #AC94CF;
+        max-height: 0; /* Start with no height */
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        border-radius: 20px;
+        text-align: center;
+        margin-top: 10px;
+        background-image: url("pattern.png");
+        background-size: contain;
+        margin-left: 130px;
+      }
+
+          .panel p {
+            padding: 18px;
+            margin: 0;
+            font-size: 30px;
+            margin-top: 25px;
+          }
+
+
+
+      .rcorners2 {
+        border-radius: 20px;
+        background: #AC94CF;
+        padding: 10px; 
+        width: 280px;
+        height: 50px;  
+        margin-left: 595px;
+        text-align: center;
+        margin-top: 70px;
+      }
+
+      .rcorners2 h1 {
+          font-size: 40px;
+          margin-top: 1px;
+          padding-left: 5px;
+          padding-right: 5px;
+      }
+
+
+      /* Width */
+      ::-webkit-scrollbar {
+        width: 20px;
+      }
+
+      /* Track */
+      ::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px grey;
+        border-radius: 10px;
+      }
+
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background: #6b4f91;
+        border-radius: 10px;
+      }
+
+      /* Handle on hover */
+      ::-webkit-scrollbar-thumb:hover {
+        background: #896eaf;
+      }
+
+      /* For Firefox */
+      /* Thin scrollbar width */
+      body {
+        scrollbar-width: thin;
+        scrollbar-color: #6b4f91 #f1f1f1; /* Thumb color and track color */
+      }
+      #backToTop {
+          position: fixed; /* Fixed position to stay in the same place */
+          bottom: 20px; /* Distance from the bottom of the viewport */
+          right: 20px; /* Distance from the right of the viewport */
+          background-color: #7a5ba7; /* Background color */
+          color: white; /* Text color */
+          border: none; /* Remove border */
+          border-radius: 5px; /* Rounded corners */
+          padding: 10px 15px; /* Padding for size */
+          font-size: 16px; /* Font size */
+          cursor: pointer; /* Cursor changes to pointer on hover */
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+          transition: background-color 0.3s, transform 0.3s; /* Smooth transition effects */
+          font-family: Garamond;
+      }
+
+      /* Hover effect */
+      #backToTop:hover {
+          background-color: #6b4f91; /* Darker shade on hover */
+          transform: scale(1.05); /* Slightly scale up on hover */
+      }
+
+      /* Media query for responsiveness */
+      @media screen and (max-width: 600px) {
+          #backToTop {
+              font-size: 14px; /* Adjust font size for smaller screens */
+              padding: 8px 12px; /* Adjust padding for smaller screens */
+          }
+      }
+      .header-two{
+          text-align: center;
+          font-size: 30px;
+      }
+      /* Carousel Styles */
+      .carousel-container {
+          position: relative;
+          width: 100%; /* Full width container */
+          max-width: 1000px;
+          margin: 70px auto;
+          overflow: hidden;
+          border-radius: 20px;
+          opacity: 0; /* Initially hidden */
+          /* visibility: hidden; Initially hidden */
+          transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out; /* Smooth fade-in */
+          }
+
+      .carousel-slide {
+          display: flex;
+          transition: transform 0.4s ease-in-out;
+          width: 100%; /* Ensure it fills the container */
+      }
+      .carousel-image {
+          min-width: 100%; /* Each image takes full width of the container */
+          transition: opacity 0.5s ease, transform 0.5s ease; /* Smooth transition for opacity */
+          opacity: 0; /* Start hidden */
+          cursor: pointer;
+      }
+
+      .carousel-image.visible {
+          opacity: 1; /* Fully visible when this class is added */
+      }
+
+      .carousel-container.visible {
+          opacity: 1; /* Fully visible */
+          /*visibility: visible;  Make it visible */
+      }
+
+
+      .prev-btn, .next-btn {
+          position: absolute;
+          top: 50%;
+          background-color: #7a5ba7;
+          color: #ffffff;
+          border: none;
+          padding: 10px;
+          cursor: pointer;
+          transform: translateY(-50%);
+      }
+
+      .prev-btn {
+          left: 0;
+      }
+
+      .next-btn {
+          right: 0;
+      }
+
+      .mar-bot{
+        margin-bottom: 100px;
+        width: 90%;
+      }
+
+      a.button {
+        text-decoration: none;
+      }
+
+</style>
+</head>
+<body>
+<!-- Navigation Bar -->
+<div class="topnav">
+  <a class="logo-main" href="index.html"><img height="200px" width="auto" src="/logo.png"></a>
+    <!-- <h1>Ankita Murali</h1> -->
+    <div class="nav-links">
+      <a class="nav-link nav-link-ltr" href="index.html">Home</a>
+      <a class="nav-link nav-link-ltr" href="aboutpage.html">About</a>
+      <a class="nav-link nav-link-ltr" href="workpage.html">Work</a>
+      <a class="nav-link nav-link-ltr" href="contact.html">Contact</a>
+    </div>
+    <div class="icon" onclick="toggleMenu()">
+      <i class="fa fa-bars"></i>
+    </div>
+  </div>
+  
+  <div class="dropdown-menu" id="menuDropdown">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#work">Work</a>
+    <a href="#contact">Contact</a>
+  </div>
+  
+    <div class="wrapper">
+        <!-- Header and Intro Text -->
+<div class="header">
+    <h1>Digitising the interface of a stove</h1>
+</div>
+
+<div class="small-para">
+    <p>This project was a a very new take on things. We had to create a digital interface for a normal kitchen stove to make it easier and safe to use for all age groups. I made a few and very simple changes to it so that the learning curve wouldn’t be a lot.</p>
+</div>
+<div class="mar-bot">
+  <button class="accordion"><b>The Initial part</b></button>
+  <div class="panel">
+    <p><b>This is how I started working on this project. I always go back to the basics and acknowledge what the user's needs and demands are.</b></p>
+    <div class="carousel-container" id="carousel">
+      <div class="carousel-slide">
+          <img src="digi1.png" alt="Slide 2" class="carousel-image">
+          <img src="digi2.png" alt="Slide 2" class="carousel-image">
+          <img src="digi3.png" alt="Slide 2" class="carousel-image">
+          <img src="digi4.png" alt="Slide 2" class="carousel-image">
+          <img src="digi5.png" alt="Slide 2" class="carousel-image">
+          <img src="digi6.png" alt="Slide 2" class="carousel-image">
+          <img src="digi7.png" alt="Slide 2" class="carousel-image">
+          <img src="digi9.png" alt="Slide 2" class="carousel-image">
+          <img src="digi10.png" alt="Slide 2" class="carousel-image">
+          <img src="digi12.png" alt="Slide 2" class="carousel-image">
+          <img src="digi13.png" alt="Slide 2" class="carousel-image">
+          <img src="digi14.png" alt="Slide 2" class="carousel-image">
+          <img src="digi15.png" alt="Slide 2" class="carousel-image">
+          <img src="digi16.png" alt="Slide 2" class="carousel-image">
+          <img src="digi17.png" alt="Slide 2" class="carousel-image">
+          <img src="digi18.png" alt="Slide 2" class="carousel-image">
+          <img src="digi19.png" alt="Slide 2" class="carousel-image">
+          <img src="digi20.png" alt="Slide 2" class="carousel-image">
+          <img src="digi21.png" alt="Slide 2" class="carousel-image">
+      </div>
+    
+      <button class="prev-btn" onclick="prevSlide()">&#10094;</button>
+      <button class="next-btn" onclick="nextSlide()">&#10095;</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="mar-bot">
+  <button class="accordion"><b>Solution</b></button>
+  <div class="panel" id="different">
+    <p><b>I have designed a digital panel instead the use of physical knobs to use the stove.</b></p>
+    <div class="section-content">
+            
+      <div class="image-container">
+          <img src="digi22.png" alt="Image 1">
+          <div class="description"><b>These are mockups of my panel on a stove.</b></div>
+      </div>
+      <div class="image-container">
+          <img src="digi23.png" alt="Image 2">
+          <div class="description"><b>These are my most imporatnt parts of my panel.</b></div>
+      </div>
+      <div class="image-container">
+          <img src="digi24.png" alt="Image 3">
+          <div class="description"><b>This is how a person can go-about the stove, it is also a user flow.</b></div>
+      </div>
+      <div class="image-container">
+          <img src="digi25.png" alt="Image 3">
+          <div class="description"><b>Continuation of the user flow.</b></div>
+      </div>
+    </div>
+</div>
+        
+
+    <!-- Full-view modal -->
+    <div id="modal" class="modal">
+        <span class="close">&times;</span>
+        <img id="modal-image" src="" alt="Full View">
+    </div>
+    <button id="backToTop" onclick="scrollToTop()">Back to Top</button>
+    
+    <script>
+        // Scroll fade-in functionality
+        function handleScroll() {
+            const images = document.querySelectorAll('.image-container');
+            const triggerBottom = window.innerHeight / 5 * 4;
+
+            images.forEach(img => {
+                const imgTop = img.getBoundingClientRect().top;
+                if (imgTop < triggerBottom) {
+                    img.classList.add('visible');
+                } else {
+                    img.classList.remove('visible');
+                }
+            });
+        }
+
+        // Throttle function to limit scroll event frequency
+        function throttle(func, limit) {
+            let inThrottle;
+            return function() {
+                const args = arguments;
+                const context = this;
+                if (!inThrottle) {
+                    func.apply(context, args);
+                    inThrottle = true;
+                    setTimeout(() => inThrottle = false, limit);
+                }
+            }
+        }
+
+        const throttledHandleScroll = throttle(handleScroll, 100);
+        window.addEventListener('scroll', throttledHandleScroll);
+        window.addEventListener('load', handleScroll);
+
+        // Full view modal functionality
+        const modal = document.getElementById('modal');
+        const modalImage = document.getElementById('modal-image');
+        const closeBtn = document.querySelector('.close');
+
+        document.querySelectorAll('.image-container img').forEach(img => {
+            img.addEventListener('click', () => {
+                modalImage.src = img.src;
+                modal.style.display = 'flex';
+            });
+        });
+
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        // Close modal on outside click
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+        function toggleMenu() {
+  var menu = document.getElementById("menuDropdown");
+  if (menu.classList.contains("show")) {
+    menu.classList.remove("show");
+  } else {
+    menu.classList.add("show");
+  }
+}
+// Get the button element
+const backToTopButton = document.getElementById("backToTop");
+
+// Show the button only when the user reaches the bottom of the page
+window.onscroll = function() {
+  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  const windowHeight = window.innerHeight;
+  const documentHeight = document.documentElement.scrollHeight;
+
+  // Check if the user has reached the bottom of the page
+  if (scrollTop + windowHeight >= documentHeight) {
+    backToTopButton.style.display = "block"; // Show button
+  } else {
+    backToTopButton.style.display = "none"; // Hide button
+  }
+};
+
+// Function to scroll to the top smoothly
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Initially hide the button (just in case)
+backToTopButton.style.display = "none";
+
+
+        document.addEventListener("DOMContentLoaded", function() {
+            var acc = document.getElementsByClassName("accordion");
+            var marBot = document.getElementsByClassName("mar-bot");
+            for (var i = 0; i < acc.length; i++) {
+              acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                  panel.style.maxHeight = null;
+                  panel.style.marginBottom = "100px";
+                } else {
+                  // Set a minimum height of 500px regardless of content size
+                  panel.style.maxHeight = Math.max(panel.scrollHeight, 500) + "px";
+                  panel.style.marginBottom = "-90px";
+                }
+              });
+            }
+          });
+        let currentSlide = 0;
+
+// Show modal function
+function openModal(imageSrc) {
+    const modal = document.getElementById('modal');
+    const modalImage = document.getElementById('modal-image');
+    modalImage.src = imageSrc;
+    modal.style.display = 'flex'; // Use flex to center the modal content
+}
+
+// Close modal function
+function closeModal() {
+    const modal = document.getElementById('modal');
+    modal.style.display = 'none';
+}
+
+// Function to show images with fade-in effect
+function showSlide(index) {
+    const slides = document.querySelectorAll('.carousel-image');
+    const totalSlides = slides.length;
+    const carouselSlide = document.querySelector('.carousel-slide');
+    const carouselContainer = document.querySelector('.carousel-container');
+
+    // Ensure the current slide index is within bounds
+    if (index >= totalSlides) {
+        currentSlide = 0;
+    } else if (index < 0) {
+        currentSlide = totalSlides - 1;
+    } else {
+        currentSlide = index;
+    }
+
+    // Set the transform property to show the correct slide
+    carouselSlide.style.transform = `translateX(${-100 * currentSlide}%)`;
+
+    // Remove visible class from all slides
+    slides.forEach(slide => {
+        slide.classList.remove('visible'); // Hide all slides
+    });
+
+    // Add visible class to the current slide to trigger fade-in
+    slides[currentSlide].classList.add('visible');
+
+    // If it's the first time showing the carousel, make it visible
+    if (!carouselContainer.classList.contains('visible')) {
+        carouselContainer.classList.add('visible');
+    }
+}
+
+
+function nextSlide() {
+    showSlide(currentSlide + 1);
+}
+
+function prevSlide() {
+    showSlide(currentSlide - 1);
+}
+
+// Initialize carousel and set up resizing behavior
+window.onload = function() {
+    showSlide(currentSlide);
+    window.addEventListener('resize', () => showSlide(currentSlide));
+};
+
+// Add click event listener for carousel images to open in modal
+const carouselImages = document.querySelectorAll('.carousel-image');
+carouselImages.forEach((img) => {
+    img.addEventListener('click', () => {
+        modalImage.src = img.src; // Set the modal image source
+        modal.style.display = 'flex'; // Show the modal
+    });
+});
+
+
+    </script>
+ 
+</body>
+</html>
